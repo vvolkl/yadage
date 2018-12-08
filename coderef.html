@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Code Reference &#8212; Yadage 0.10 documentation</title>
+    <link rel="stylesheet" href="_static/nature.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Contributing" href="contributing.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="Contributing"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Yadage 0.10 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-yadage.stages">
+<span id="code-reference"></span><h1>Code Reference<a class="headerlink" href="#module-yadage.stages" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="yadage.stages.JsonStage">
+<em class="property">class </em><code class="descclassname">yadage.stages.</code><code class="descname">JsonStage</code><span class="sig-paren">(</span><em>json</em>, <em>state_provider</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.stages.JsonStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A stage that is defined via the JSON scheduler schemas</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="yadage.stages.OffsetStage">
+<em class="property">class </em><code class="descclassname">yadage.stages.</code><code class="descname">OffsetStage</code><span class="sig-paren">(</span><em>rule</em>, <em>offset=None</em>, <em>identifier=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.stages.OffsetStage" title="Permalink to this definition">¶</a></dt>
+<dd><p>A wrapper object around a scoped rule, so that it can be applied from
+a global p.o.v., i.e. as adage expects its rules.</p>
+<dl class="method">
+<dt id="yadage.stages.OffsetStage.applicable">
+<code class="descname">applicable</code><span class="sig-paren">(</span><em>adageobj</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.stages.OffsetStage.applicable" title="Permalink to this definition">¶</a></dt>
+<dd><p>determin whether the rule is applicable. Evaluated within the offset.
+:param adageobj: the workflow object</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="yadage.stages.OffsetStage.apply">
+<code class="descname">apply</code><span class="sig-paren">(</span><em>adageobj</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.stages.OffsetStage.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>applies a rule within the scope set by offset</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>adageobj</strong> – the workflow object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="yadage.stages.ViewStageBase">
+<em class="property">class </em><code class="descclassname">yadage.stages.</code><code class="descname">ViewStageBase</code><span class="sig-paren">(</span><em>name</em>, <em>state_provider</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.stages.ViewStageBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>base class for workflow stages operating on workflow views, that may
+expose only a partial slice of an overall workflow.
+The class also provides common methods to ease modifying the workflow.</p>
+<p>Implementations are required to provide
+* a ready() method to implement the predicate method
+* a schedule() method that is called upon apply</p>
+</dd></dl>
+
+<span class="target" id="module-yadage.utils"></span><dl class="function">
+<dt id="yadage.utils.getinit_data">
+<code class="descclassname">yadage.utils.</code><code class="descname">getinit_data</code><span class="sig-paren">(</span><em>initfiles</em>, <em>parameters</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.getinit_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>get initial data from both a list of files and a list of ‘pname=pvalue’
+strings as they are passed in the command line &lt;pvalue&gt; is assumed to be a
+YAML parsable string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yadage.utils.json_hash">
+<code class="descclassname">yadage.utils.</code><code class="descname">json_hash</code><span class="sig-paren">(</span><em>jsonable</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.json_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a content-based hash of a json-able structure (serialized with WithJsonRefEncoder)</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jsonable</strong> – a json-serializable object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">the hash</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="yadage.utils.leaf_iterator">
+<code class="descclassname">yadage.utils.</code><code class="descname">leaf_iterator</code><span class="sig-paren">(</span><em>jsonable</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.leaf_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>generator function to yield leafs items of a JSON-like structure alongside
+their position in the structure as determined by a JSONPointer.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>jsonable</strong> – a json-serializable object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuples (jsonpointer, leaf value)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="yadage.utils.leaf_iterator_jsonlike">
+<code class="descclassname">yadage.utils.</code><code class="descname">leaf_iterator_jsonlike</code><span class="sig-paren">(</span><em>jsonlike</em>, <em>path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.leaf_iterator_jsonlike" title="Permalink to this definition">¶</a></dt>
+<dd><p>‘
+:param jsonlike: a jsonlike object (i.e. nested lists/arrays: leaf-types must not be JSONable)
+:return: iterator that yields (JSON path, leaf value) tuples</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yadage.utils.pointerize">
+<code class="descclassname">yadage.utils.</code><code class="descname">pointerize</code><span class="sig-paren">(</span><em>typedleafs</em>, <em>asref=False</em>, <em>stepid=None</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.pointerize" title="Permalink to this definition">¶</a></dt>
+<dd><p>a helper method that replaces leaf nodes in a JSON object with
+a outputReference objects (~ a JSONPath) pointing to that leaf position
+useful to track access to leaf nodes later on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="yadage.utils.prepare_meta">
+<code class="descclassname">yadage.utils.</code><code class="descname">prepare_meta</code><span class="sig-paren">(</span><em>metadir</em>, <em>accept=False</em><span class="sig-paren">)</span><a class="headerlink" href="#yadage.utils.prepare_meta" title="Permalink to this definition">¶</a></dt>
+<dd><p>prepare workflow meta-data directory</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>metadir</strong> – the meta-data directory name</li>
+<li><strong>accept</strong> – whether to accept an existing metadata directory</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="contributing.html"
+                        title="previous chapter">Contributing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/coderef.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="contributing.html" title="Contributing"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Yadage 0.10 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, Lukas Heinrich.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+    </div>
+  </body>
+</html>
